@@ -1,0 +1,81 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("./Montserrat.ttf") format("truetype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("./Montserrat.ttf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("./Montserrat.ttf") format("truetype");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("./Montserrat.ttf") format("truetype");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("./Montserrat.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Open-sans";
+  src: url("./OpenSans.ttf") format("truetype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Open-sans";
+  src: url("./OpenSans.ttf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Open-sans";
+  src: url("./OpenSans.ttf") format("truetype");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Open-sans";
+  src: url("./OpenSans.ttf") format("truetype");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Open-sans";
+  src: url("./OpenSans.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./inter.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./inter.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./inter.ttf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./inter.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./inter.ttf") format("truetype");
+  font-weight: bold;
+}
