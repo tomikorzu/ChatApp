@@ -4,17 +4,17 @@ import { socket } from "../../utils/socket";
 export default function SendMessageForm() {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (inputValue.trim().length === 0) return;
-    setInputValue("");
     setIsTyping(false);
 
-    socket.emit("message", inputValue, (response: string) => {
-      console.log(response);
-    });
+    socket.emit("message", inputValue);
+    setInputValue("");
   }
+
   return (
     <form
       onSubmit={handleSubmit}
