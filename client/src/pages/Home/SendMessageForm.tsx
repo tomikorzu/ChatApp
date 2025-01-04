@@ -18,7 +18,7 @@ export default function SendMessageForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="fixed bottom-2 w-[95%] p-2 rounded-full flex justify-between items-center gap-2 bg-[#2f2f2f]"
+      className="fixed bottom-4 w-[90%] p-2 rounded-full flex justify-between items-center gap-2 bg-[#2f2f2f]"
     >
       <input
         type="text"
@@ -29,7 +29,7 @@ export default function SendMessageForm() {
           setIsTyping(value.length > 0);
           setInputValue(value);
         }}
-        className="p-2 w-full rounded-md bg-transparent max-w-[96%] placeholder:text-[#888]"
+        className="p-2 text-sm w-full rounded-md bg-transparent max-w-[96%] placeholder:text-[#888]"
       />
       <button
         type="submit"
@@ -38,7 +38,7 @@ export default function SendMessageForm() {
           isTyping
             ? "opacity-100 pointer-events-auto"
             : "opacity-50 pointer-events-none"
-        } bg-[#f1f1f1] text-slate-950 absolute right-2 rounded-full size-9 flex items-center justify-center transition duration[.4s]`}
+        } bg-[#f1f1f1] text-slate-950 absolute right-2 rounded-full size-8 flex items-center justify-center transition duration[.4s]`}
       >
         <i className="fa-solid fa-arrow-up" />
       </button>
