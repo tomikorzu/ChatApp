@@ -19,9 +19,13 @@ app.get("/", (_req, res) => {
 
 io.on("connection", socket => {
     console.log("New connection", socket.id)
+
+    socket.on("disconnect", () => {
+        console.log("Client disconnected", socket.id)
+    })
+
     socket.on("message", data => {
-        console.log("Message", data)
-        io.emit("message", data)
+        socket.broadcast.emit("message", data)
     })
 })
 
