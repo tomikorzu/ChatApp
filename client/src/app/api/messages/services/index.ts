@@ -2,12 +2,12 @@ import db from "@/server/database/db";
 
 export function getMessages() {
   return new Promise((resolve, reject) => {
-    db.get(`SELECT * FROM messages`, (err, rows) => {
+    db.all(`SELECT * FROM messages ORDER BY id ASC`, (err, rows) => {
       if (err) {
         console.error(err);
         reject("There was an error getting messages");
       }
-      if (!rows) reject("There are no messages");
+      if (!rows) reject("No messages found");
       resolve(rows);
     });
   });

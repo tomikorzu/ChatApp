@@ -27,9 +27,9 @@ export async function addUser(
       function (err) {
         if (err) {
           console.error(err);
-          reject("There was an error adding the user");
+          return reject("There was an error adding the user");
         }
-        resolve(this.lastID);
+        return resolve(this.lastID);
       }
     );
   });

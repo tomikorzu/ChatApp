@@ -19,6 +19,7 @@ export async function POST(req: Request) {
     const response = { message: "User added successfully", token };
     return res.json(response, { status: 201 });
   } catch (error) {
+    console.log(error);
     return res.json({ error }, { status: 500 });
   }
 }
