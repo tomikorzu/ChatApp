@@ -16,6 +16,8 @@ export default function SendMessageForm() {
     if (inputValue.trim().length === 0) return;
     setIsTyping(false);
 
+    if (!socket) return;
+
     socket.emit("message", inputValue);
     setInputValue("");
   }
@@ -34,7 +36,7 @@ export default function SendMessageForm() {
           setIsTyping(value.length > 0);
           setInputValue(value);
         }}
-        className="p-2 text-sm w-full rounded-md bg-transparent max-w-[96%] placeholder:text-[#888]"
+        className="p-2 text-sm w-full rounded-md bg-transparent pr-11 placeholder:text-[#888]"
       />
       <button
         type="submit"

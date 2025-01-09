@@ -1,12 +1,23 @@
+"use client"
+
+import { useSocket } from "@/shared/hooks/useSocket";
+import Link from "next/link";
+
 export default function UserInfo() {
+  const socket = useSocket();
   const data = {
     image: "/me.jpeg",
     name: "amor",
     state: "Online",
   };
 
+  const id = 1;
+
   return (
-    <div className="flex gap-2 items-center justify-start bg-[#212121]">
+    <Link
+      href={`${id}/friend-profile`}
+      className="flex gap-2 w-full items-center justify-start bg-[#212121]"
+    >
       <img
         src={data.image}
         alt={`${data.name} User Image`}
@@ -14,10 +25,10 @@ export default function UserInfo() {
       />
       <div className="flex flex-col">
         <h3 className="font-bold max-w-[170px] text-sm whitespace-nowrap text-ellipsis overflow-hidden">
-          {data.name}
+          {}
         </h3>
         <span className="text-[10px]">{data.state}</span>
       </div>
-    </div>
+    </Link>
   );
 }

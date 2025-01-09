@@ -19,10 +19,15 @@ export default function Messages() {
     };
   }, [socket]);
   return (
-    <ul className="absolute top-16 flex flex-col gap-2 overflow-y-auto max-h-[400px] w-full p-4">
+    <ul className="absolute top-0 left-0 bottom-0 flex flex-col gap-2 overflow-y-auto max-h-screen pt-16 pb-20 w-full p-4">
       {messages.map((message: string, index: number) => {
         return (
-          <li key={index} className="p-3 text-sm rounded-xl bg-[#333] ">
+          <li
+            key={index}
+            className={`px-3 py-2 text-sm rounded-xl bg-[#333] w-fit max-w-[80%] break-words  ${
+              index % 2 !== 0 ? "self-end" : "self-start"
+            }`}
+          >
             {message}
           </li>
         );

@@ -6,6 +6,7 @@ export async function setupSocket(httpServer: httpServer) {
 
   io.on("connection", (socket) => {
     console.log("Client connected", socket.id);
+    socket.data = { username: "amor" };    
 
     socket.on("disconnect", () => {
       console.log("Client disconnected", socket.id);
