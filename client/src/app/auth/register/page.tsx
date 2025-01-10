@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Redirect from "../components/Redirect";
-import EyePassword from "../components/EyePassword";
 import SubmitBtn from "../components/SubmitBtn";
 import AuthForm from "../components/AuthForm";
 import AuthContainer from "../components/AuthContainer";

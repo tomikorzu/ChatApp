@@ -19,6 +19,29 @@ body {
   padding: 0;
 }
 
-button, a {
-    cursor: pointer;
+button,
+a {
+  cursor: pointer;
+}
+
+.hand-transition {
+  animation: handTransition 1s 1s forwards;
+}
+
+@keyframes handTransition {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(25deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(25deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
