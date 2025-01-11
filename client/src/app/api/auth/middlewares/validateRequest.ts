@@ -18,9 +18,15 @@ export async function validateRegister(
       location: "username",
     });
   } else {
-    if (username.length < 2 || username.length > 30) {
+    if (username.length < 4) {
       errors.push({
-        msg: "Username must be between 2 and 30 characters",
+        msg: "Username must be at least 4 characters long",
+        location: "username",
+      });
+    }
+    if (username.length > 30) {
+      errors.push({
+        msg: "Username must be at most 30 characters long",
         location: "username",
       });
     }
@@ -67,9 +73,15 @@ export async function validateRegister(
       location: "password",
     });
   } else {
-    if (password.length < 8 || password.length > 30) {
+    if (password.length < 8) {
       errors.push({
-        msg: "Password must be between 8 and 30 characters long",
+        msg: "Password must be at least 8 characters long",
+        location: "password",
+      });
+    }
+    if (password.length > 30) {
+      errors.push({
+        msg: "Password must be at most 30 characters long",
         location: "password",
       });
     }
