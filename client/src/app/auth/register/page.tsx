@@ -43,11 +43,23 @@ export default function RegisterPage() {
       <AuthForm action={handleSubmit}>
         <Logo />
         <Title>Create an account</Title>
-        <TextInput placeholder="Enter your username" id="username" action={setUsername} />
+        <TextInput
+          placeholder="Enter your username"
+          id="Username"
+          action={setUsername}
+        />
         {/* {errors.username[0] && <p>{errors.username[0]}</p>} */}
-        <TextInput placeholder="Enter your email" id="email" action={setEmail} />
+        <TextInput
+          placeholder="Enter your email"
+          id="Email"
+          action={setEmail}
+        />
         {/* {errors.email[0] && <p>{errors.email[0]}</p>} */}
-        <PasswordInput placeholder="Enter your password" id="password" action={setPassword} />
+        <PasswordInput
+          placeholder="Enter your password"
+          id="Password"
+          action={setPassword}
+        />
         {/* {errors.password[0] && <p>{errors.password[0]}</p>} */}
         <SubmitBtn>Sign Up</SubmitBtn>
       </AuthForm>

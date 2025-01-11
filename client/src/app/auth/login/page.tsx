@@ -10,6 +10,7 @@ import TextInput from "../components/TextInput";
 import { useState } from "react";
 import PasswordInput from "../components/PasswordInput";
 import SubmitBtn from "../components/SubmitBtn";
+import ForgotPassword from "../components/ForgotPassword";
 
 export default function LoginPage() {
   const [emailOrUsername, setEmailOrUsername] = useState<string>("");
@@ -44,6 +45,7 @@ export default function LoginPage() {
           action={setEmailOrUsername}
         />
         <PasswordInput placeholder="Enter your password" id={"Password"} action={setPassword} />
+        <ForgotPassword />
         <SubmitBtn>Sign In</SubmitBtn>
       </AuthForm>
     </AuthContainer>
