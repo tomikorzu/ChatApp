@@ -23,9 +23,9 @@ export default function RegisterPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    const res = await fetch("/api/users", {
+    const res = await fetch("/api/auth/register", {
       method: "POST",
-      body: JSON.stringify({ fullname: username, email, password }),
+      body: JSON.stringify({ username, email, password }),
     });
 
     if (res.status === 201) {

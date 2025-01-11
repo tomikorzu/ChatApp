@@ -10,9 +10,11 @@ const db = new sqlite.Database("./src/server/database/database.db", (err) => {
 
 db.run(`CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    fullname TEXT NOT NULL,
+    username TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
+    code varchar(6),
+    verified BOOLEAN DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );`);
 
