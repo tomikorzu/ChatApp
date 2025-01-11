@@ -40,9 +40,10 @@ export default function LoginPage() {
         </Title>
         <TextInput
           placeholder="Enter your email or username"
+          id={"Email or username"}
           action={setEmailOrUsername}
         />
-        <PasswordInput placeholder="Enter your password" action={setPassword} />
+        <PasswordInput placeholder="Enter your password" id={"Password"} action={setPassword} />
         <SubmitBtn>Sign In</SubmitBtn>
       </AuthForm>
     </AuthContainer>

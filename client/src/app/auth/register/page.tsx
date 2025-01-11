@@ -16,6 +16,8 @@ export default function RegisterPage() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const [errors, setErrors] = useState<string[]>([]);
+
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -28,7 +30,11 @@ export default function RegisterPage() {
 
     if (res.status === 201) {
       router.push("/auth/check");
+    } else if (res.status === 400) {
+      const { errors } = await res.json();
+      setErrors(errors);
     } else {
+      console.error("An error occurred");
     }
   }
   return (
@@ -37,9 +43,12 @@ export default function RegisterPage() {
       <AuthForm action={handleSubmit}>
         <Logo />
         <Title>Create an account</Title>
-        <TextInput placeholder="Enter your username" action={setUsername} />
-        <TextInput placeholder="Enter your email" action={setEmail} />
-        <PasswordInput placeholder="Enter your password" action={setPassword} />
+        <TextInput placeholder="Enter your username" id="username" action={setUsername} />
+        {/* {errors.username[0] && <p>{errors.username[0]}</p>} */}
+        <TextInput placeholder="Enter your email" id="email" action={setEmail} />
+        {/* {errors.email[0] && <p>{errors.email[0]}</p>} */}
+        <PasswordInput placeholder="Enter your password" id="password" action={setPassword} />
+        {/* {errors.password[0] && <p>{errors.password[0]}</p>} */}
         <SubmitBtn>Sign Up</SubmitBtn>
       </AuthForm>
     </AuthContainer>

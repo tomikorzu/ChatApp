@@ -11,7 +11,7 @@ export default function EyePassword({
     <button
       onClick={() => action(!variable)}
       type="button"
-      className="absolute right-0 text-slate-100 hover:text-[#25c2a0] text-sm p-2 transition duration-200"
+      className="absolute top-1/2 translate-y-[-50%] right-0 text-slate-100 hover:text-[#25c2a0] text-sm p-2 transition duration-200"
     >
       {!variable ? <Eye /> : <EyeOff />}
     </button>
