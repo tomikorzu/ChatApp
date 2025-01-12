@@ -46,7 +46,7 @@ export default function LoginPage() {
         />
         <PasswordInput placeholder="Enter your password" id={"Password"} action={setPassword} />
         <ForgotPassword />
-        <SubmitBtn>Sign In</SubmitBtn>
+        <SubmitBtn disabled={false}>Sign In</SubmitBtn>
       </AuthForm>
     </AuthContainer>
   );

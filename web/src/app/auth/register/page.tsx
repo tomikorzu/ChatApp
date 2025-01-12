@@ -33,6 +33,7 @@ export default function RegisterPage() {
     });
 
     if (res.status === 201) {
+      document.cookie = `email-check=${email}; path=/;`;
       router.push("check");
       setTimeout(() => setLoading(false), 200);
       return;

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useSocket } from "@/shared/hooks/useSocket";
 import Link from "next/link";
@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function UserInfo() {
   const socket = useSocket();
   const data = {
-    image: "/me.jpeg",
+    image: "/images/me.jpeg",
     name: "amor",
     state: "Online",
   };
