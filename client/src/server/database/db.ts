@@ -61,4 +61,20 @@ db.run(`CREATE TABLE IF NOT EXISTS friend_requests (
 db.run("PRAGMA busy_timeout = 5000;");
 db.run("PRAGMA journal_mode=WAL;");
 
+function cleanUpUnverifiedUsers() {
+  const query = `
+        DELETE FROM users 
+        WHERE verified = 0 
+          AND created_at <= datetime('now', '-15 minutes');
+    `;
+
+  db.run(query, function (err) {
+    if (err) {
+      console.error("There was an error deleting users:", err.message);
+    }
+  });
+}
+
+setInterval(cleanUpUnverifiedUsers, 900000);
+
 export default db;

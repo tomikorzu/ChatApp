@@ -1,3 +1,4 @@
+import { check } from "express-validator";
 import { isEmailInUse, isUsernameInUse } from "./querys";
 
 interface ValidationError {
@@ -106,4 +107,24 @@ export async function validateRegister(
   }
 
   return errors;
+}
+
+export async function validateLogin(emailOrUsername: string, password: string) {
+    const errors: ValidationError[] = [] 
+
+    if (!emailOrUsername || emailOrUsername.trim() === "") {
+        errors.push({
+            msg: "Email or username is required",
+            location: "emailOrUsername"
+        })
+    }
+
+    if (!password || password.trim() === "") {
+        errors.push({
+            msg: "Password is required",
+            location: "password"
+        })
+    }
+
+    return errors
 }
