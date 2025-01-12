@@ -11,15 +11,22 @@ import { useState } from "react";
 import PasswordInput from "../components/PasswordInput";
 import SubmitBtn from "../components/SubmitBtn";
 import ForgotPassword from "../components/ForgotPassword";
+import { createCookie } from "@/shared/lib/cookies";
+import ErrorText from "../components/ErrorText";
+import DotsWord from "@/shared/ui/DotsWord";
 
 export default function LoginPage() {
   const [emailOrUsername, setEmailOrUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const [errors, setErrors] = useState<{ msg: string; location: string }[]>([]);
 
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setLoading(true);
 
     const res = await fetch("/api/auth/login", {
       method: "POST",
@@ -27,7 +34,16 @@ export default function LoginPage() {
     });
 
     if (res.status === 200) {
-      router.push("/auth/check");
+      const { token } = await res.json();
+      setTimeout(() => setLoading(false), 200);
+      createCookie("auth-token", token);
+      router.push("/");
+    } else {
+      const { errors } = await res.json();
+      setTimeout(() => {
+        setErrors(errors);
+        setLoading(false);
+      }, 200);
     }
   }
   return (
@@ -44,9 +60,17 @@ export default function LoginPage() {
           id={"Email or username"}
           action={setEmailOrUsername}
         />
-        <PasswordInput placeholder="Enter your password" id={"Password"} action={setPassword} />
+        <ErrorText location={"emailOrUsername"} errors={errors} />
+        <PasswordInput
+          placeholder="Enter your password"
+          id={"Password"}
+          action={setPassword}
+        />
+        <ErrorText location={"password"} errors={errors} />
         <ForgotPassword />
-        <SubmitBtn disabled={false}>Sign In</SubmitBtn>
+        <SubmitBtn disabled={loading}>
+          {loading ? <DotsWord text={"Joining In"} /> : "Sign In"}
+        </SubmitBtn>
       </AuthForm>
     </AuthContainer>
   );

@@ -12,6 +12,7 @@ import TextInput from "../components/TextInput";
 import PasswordInput from "../components/PasswordInput";
 import ErrorText from "../components/ErrorText";
 import DotsWord from "@/shared/ui/DotsWord";
+import { createCookie } from "@/shared/lib/cookies";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState<string>("");
@@ -33,7 +34,7 @@ export default function RegisterPage() {
     });
 
     if (res.status === 201) {
-      document.cookie = `email-check=${email}; path=/;`;
+      createCookie("email-check", email);
       router.push("check");
       setTimeout(() => setLoading(false), 200);
       return;
