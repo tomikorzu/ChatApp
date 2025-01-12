@@ -20,3 +20,9 @@ export function verifyEmailTemplate(username: string, randomCode: string) {
     <div style="font-weight: bold;">${randomCode}</div>
     <p>If you didn't sign up for this account, please ignore this email.</p>`;
 }
+
+export function resendEmailTemplate(randomCode: string) {
+  return `<h1>Resend code</h1>
+    <p>Here is your new code:</p>
+    <div style="font-weight: bold;">${randomCode}</div>`;
+}

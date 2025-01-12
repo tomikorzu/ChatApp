@@ -10,7 +10,8 @@ import SubmitBtn from "../components/SubmitBtn";
 import ErrorText from "../components/ErrorText";
 import { useRouter } from "next/navigation";
 import GoBack from "../components/GoBack";
-import { createCookie, deleteCookie } from "@/shared/lib/cookies";
+import { createCookie, deleteCookie, getCookie } from "@/shared/lib/cookies";
+import ResendCode from "../components/ResendCode";
 
 export default function CheckPage() {
   const [email, setEmail] = useState<string | undefined>();
@@ -21,10 +22,7 @@ export default function CheckPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const emailCheck = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("email-check="))
-      ?.split("=")[1];
+    const emailCheck = getCookie("email-check");
 
     setEmail(emailCheck);
   }, []);
@@ -66,6 +64,7 @@ export default function CheckPage() {
           location={"Code"}
           errors={[{ location: "Code", msg: errors }]}
         />
+        <ResendCode email={email} />
         <SubmitBtn disabled={loading}>
           {loading ? "Checking..." : "Check Email"}
         </SubmitBtn>

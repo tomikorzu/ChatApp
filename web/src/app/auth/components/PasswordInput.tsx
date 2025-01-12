@@ -13,7 +13,7 @@ export default function PasswordInput({
   const [seePassword, setSeePassword] = useState<boolean>(false);
 
   return (
-    <div className="flex flex-col w-full items-center mb-[5px] relative">
+    <div className="flex flex-col w-full items-center relative">
       <label
         className="capitalize pointer-events-none absolute top-[-3px] left-[10px] bg-[#2f2f2f] text-[#e2e2e2] text-sm py-0 px-1 font-semibold"
         htmlFor={id}

@@ -4,7 +4,7 @@ export default function ForgotPassword() {
   return (
     <Link
       href="forgot-password"
-      className="font-semibold self-start mb-1"
+      className="font-semibold self-start"
     >
       Forgot your password?
     </Link>

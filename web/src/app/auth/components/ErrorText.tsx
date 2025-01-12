@@ -7,9 +7,13 @@ export default function ErrorText({
 }) {
   const error = errors.find((error) => error.location === location);
 
-  return error ? (
-    <p className="text-[#fa5f5f] text-sm text-start self-start mb-2">
-      {error.msg}
+  return (
+    <p
+      className={`text-[#fa5f5f] text-sm text-start self-start mb-2 ${
+        error ? "" : "hidden"
+      }`}
+    >
+      {error ? error.msg : "Not errors"}
     </p>
-  ) : null;
+  );
 }
