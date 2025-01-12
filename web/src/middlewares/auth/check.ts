@@ -5,5 +5,6 @@ export default function checkMiddleware(req: NextRequest) {
 
   if (!emailCheck && req.nextUrl.pathname === "/auth/check") {
     return NextResponse.redirect(new URL("/auth/register", req.url));
-  }
+  } else if (emailCheck && req.nextUrl.pathname !== "/auth/check")
+    return NextResponse.redirect(new URL("/auth/check", req.url));
 }
