@@ -1,5 +1,11 @@
 import { check } from "express-validator";
-import { isEmailInUse, isUsernameInUse } from "./querys";
+import {
+  checkEmailExists,
+  checkUserExists,
+  checkUserIsVerified,
+  isEmailInUse,
+  isUsernameInUse,
+} from "./querys";
 
 interface ValidationError {
   msg: string;
@@ -110,21 +116,64 @@ export async function validateRegister(
 }
 
 export async function validateLogin(emailOrUsername: string, password: string) {
-    const errors: ValidationError[] = [] 
+  const errors: ValidationError[] = [];
 
-    if (!emailOrUsername || emailOrUsername.trim() === "") {
-        errors.push({
-            msg: "Email or username is required",
-            location: "emailOrUsername"
-        })
+  if (!emailOrUsername || emailOrUsername.trim() === "") {
+    errors.push({
+      msg: "Email or username is required",
+      location: "emailOrUsername",
+    });
+  }
+
+  if (emailOrUsername.includes("@")) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailOrUsername)) {
+      errors.push({
+        msg: "Invalid email format",
+        location: "emailOrUsername",
+      });
     }
+    const emailExists = await checkUserIsVerified(emailOrUsername, "email");
 
-    if (!password || password.trim() === "") {
-        errors.push({
-            msg: "Password is required",
-            location: "password"
-        })
+    if (!emailExists) {
+      errors.push({
+        msg: "Email doesn't exist",
+        location: "emailOrUsername",
+      });
     }
+  } else {
+    const usernameExists = await checkUserIsVerified(
+      emailOrUsername,
+      "username"
+    );
+    if (!usernameExists) {
+      errors.push({
+        msg: "Username doesn't exist",
+        location: "emailOrUsername",
+      });
+    }
+  }
 
-    return errors
+  if (!password || password.trim() === "") {
+    errors.push({
+      msg: "Password is required",
+      location: "password",
+    });
+  }
+
+  if (password.length < 8) {
+    errors.push({
+      msg: "Password must be at least 8 characters long",
+      location: "password",
+    });
+  }
+
+  if (password.length > 30) {
+    errors.push({
+      msg: "Password must be at most 30 characters long",
+      location: "password",
+    });
+  }
+
+  return errors;
 }
