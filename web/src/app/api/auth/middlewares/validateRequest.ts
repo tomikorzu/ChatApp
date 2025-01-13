@@ -1,4 +1,9 @@
-import { checkUserIsVerified, isEmailInUse, isUsernameInUse, verifyPasswordNotBeTheSame } from "./querys";
+import {
+  checkUserIsVerified,
+  isEmailInUse,
+  isUsernameInUse,
+  verifyPasswordNotBeTheSame,
+} from "./querys";
 
 interface ValidationError {
   msg: string;
@@ -176,7 +181,7 @@ export function validateNewPassword(newPassword: string) {
 
   if (!newPassword || newPassword.trim() === "") {
     errors.push({
-      msg: "New password is required",
+      msg: "Password is required",
       location: "newPassword",
     });
   } else {

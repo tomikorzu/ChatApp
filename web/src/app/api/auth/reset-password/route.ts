@@ -22,11 +22,13 @@ export async function PATCH(req: Request) {
     }
     const isTheSame = await verifyPasswordNotBeTheSame(tokenRes, newPassword);
 
-    if (isTheSame === true)
-      return res.json(
-        { error: "The password can't be the same than the last one" },
-        { status: 400 }
-      );
+    if (isTheSame === true) {
+      errorsMessages.push({
+        location: "newPassword",
+        msg: "The password can't be the same than the last one",
+      });
+      return res.json({ errors: errorsMessages }, { status: 400 });
+    }
 
     await changePassword(tokenRes.email, newPassword);
 
