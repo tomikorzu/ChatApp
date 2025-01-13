@@ -1,11 +1,4 @@
-import { check } from "express-validator";
-import {
-  checkEmailExists,
-  checkUserExists,
-  checkUserIsVerified,
-  isEmailInUse,
-  isUsernameInUse,
-} from "./querys";
+import { checkUserIsVerified, isEmailInUse, isUsernameInUse, verifyPasswordNotBeTheSame } from "./querys";
 
 interface ValidationError {
   msg: string;
@@ -173,6 +166,50 @@ export async function validateLogin(emailOrUsername: string, password: string) {
       msg: "Password must be at most 30 characters long",
       location: "password",
     });
+  }
+
+  return errors;
+}
+
+export function validateNewPassword(newPassword: string) {
+  const errors: ValidationError[] = [];
+
+  if (!newPassword || newPassword.trim() === "") {
+    errors.push({
+      msg: "New password is required",
+      location: "newPassword",
+    });
+  } else {
+    if (newPassword.length < 8) {
+      errors.push({
+        msg: "Password must be at least 8 characters long",
+        location: "newPassword",
+      });
+    }
+    if (newPassword.length > 30) {
+      errors.push({
+        msg: "Password must be at most 30 characters long",
+        location: "newPassword",
+      });
+    }
+    if (!/\d/.test(newPassword)) {
+      errors.push({
+        msg: "Password must contain at least one number",
+        location: "newPassword",
+      });
+    }
+    if (!/[A-Z]/.test(newPassword)) {
+      errors.push({
+        msg: "Password must contain at least one uppercase letter",
+        location: "newPassword",
+      });
+    }
+    if (!/[!@#\$%\^&\*]/.test(newPassword)) {
+      errors.push({
+        msg: "Password must contain at least one special character (!@#$%^&*)",
+        location: "newPassword",
+      });
+    }
   }
 
   return errors;

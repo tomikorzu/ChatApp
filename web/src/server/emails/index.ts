@@ -26,3 +26,31 @@ export function resendEmailTemplate(randomCode: string) {
     <p>Here is your new code:</p>
     <div style="font-weight: bold;">${randomCode}</div>`;
 }
+
+export function forgotPasswordTemplate(
+  email: string,
+  username: string,
+  token: string
+) {
+  const resetPasswordUrl = `http://localhost:3000/auth/reset-password?token=${token}`;
+
+  return `
+    <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+      <h1>Forgot your password?</h1>
+      <p>Hi,${username}</p>
+      <p>We received a request to reset the password associated with your account (${email}).</p>
+      <p>Click the link below to reset your password. If you didn’t request this, please ignore this email.</p>
+      <p>
+        <a 
+          href="${resetPasswordUrl}" 
+          style="color: #ffffff; text-decoration: none; padding: 10px 20px; background-color: #4CAF50; border-radius: 5px;">
+          Reset Password
+        </a>
+      </p>
+      <p>Or copy and paste this link into your browser:</p>
+      <p><a href="${resetPasswordUrl}" style="color: #4CAF50;">${resetPasswordUrl}</a></p>
+      <p>Thank you,</p>
+      <p>Your App Team</p>
+    </div>
+  `;
+}

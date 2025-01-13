@@ -20,16 +20,10 @@ export default function ResendCode({ email }: { email: string | undefined }) {
       deleteCookie("email-check");
       router.push("/auth/register");
     }
-    const res = await fetch("/api/auth/check/resend", {
+    await fetch("/api/auth/check/resend", {
       method: "PATCH",
       body: JSON.stringify({ email }),
     });
-
-    if (res.status === 200) {
-      console.log("Code resent");
-    } else {
-      console.log("There was an error resending the code");
-    }
   }
   return (
     <div className="flex items-center self-start gap-1 mt-[-3px]">
