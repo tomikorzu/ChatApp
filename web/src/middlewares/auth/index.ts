@@ -5,18 +5,26 @@ export default function authMiddleware(req: NextRequest) {
 
   if (
     !token &&
-    !["/auth/login", "/auth/register", "/auth/check"].includes(
-      req.nextUrl.pathname
-    )
+    ![
+      "/auth/login",
+      "/auth/register",
+      "/auth/check",
+      "/auth/forgot-password",
+      "/auth/reset-password",
+    ].includes(req.nextUrl.pathname)
   ) {
     return NextResponse.redirect(new URL("/auth/login", req.url));
   }
 
   if (
     token &&
-    ["/auth/login", "/auth/register", "/auth/check"].includes(
-      req.nextUrl.pathname
-    )
+    [
+      "/auth/login",
+      "/auth/register",
+      "/auth/check",
+      "/auth/forgot-password",
+      "/auth/reset-password",
+    ].includes(req.nextUrl.pathname)
   )
     return NextResponse.redirect(new URL("/", req.url));
 }
