@@ -3,11 +3,13 @@ import { createServer } from "http";
 import { Server as SocketServer } from "socket.io";
 const app = express();
 
+const PORT = process.env.PORT || 4000;
+
 const httpServer = createServer(app);
 
 const io = new SocketServer(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.WEB_URL || "http://localhost:3000",
   },
 });
 
@@ -25,6 +27,6 @@ io.on("connection", (socket) => {
   });
 });
 
-httpServer.listen(4000, () => {
-  console.log("Server running on http://localhost:4000");
+httpServer.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
