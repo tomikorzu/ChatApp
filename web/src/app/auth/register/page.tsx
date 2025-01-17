@@ -13,6 +13,8 @@ import PasswordInput from "../components/PasswordInput";
 import ErrorText from "../components/ErrorText";
 import DotsWord from "@/shared/ui/DotsWord";
 import { createCookie } from "@/shared/lib/cookies";
+import OrText from "../components/OrText";
+import OAuthForm from "../components/OAuthForm";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState<string>("");
@@ -76,6 +78,8 @@ export default function RegisterPage() {
         <SubmitBtn disabled={loading}>
           {loading ? <DotsWord text={"Creating Account"} /> : "Sign Up"}
         </SubmitBtn>
+        <OrText>Or Register With</OrText>
+        <OAuthForm />
       </AuthForm>
     </AuthContainer>
   );

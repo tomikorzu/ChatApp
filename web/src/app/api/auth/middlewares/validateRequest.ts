@@ -1,9 +1,4 @@
-import {
-  checkUserIsVerified,
-  isEmailInUse,
-  isUsernameInUse,
-  verifyPasswordNotBeTheSame,
-} from "./querys";
+import { checkUserIsVerified, isEmailInUse, isUsernameInUse } from "./querys";
 
 interface ValidationError {
   msg: string;

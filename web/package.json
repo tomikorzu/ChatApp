@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "tsx index.ts",
-    "build": "next build",
-    "start": "tsx index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "lint": "next lint"
   },
   "dependencies": {

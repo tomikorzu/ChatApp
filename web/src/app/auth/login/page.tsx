@@ -14,6 +14,8 @@ import ForgotPassword from "../components/ForgotPassword";
 import { createCookie } from "@/shared/lib/cookies";
 import ErrorText from "../components/ErrorText";
 import DotsWord from "@/shared/ui/DotsWord";
+import OrText from "../components/OrText";
+import OAuthForm from "../components/OAuthForm";
 
 export default function LoginPage() {
   const [emailOrUsername, setEmailOrUsername] = useState<string>("");
@@ -71,6 +73,8 @@ export default function LoginPage() {
         <SubmitBtn disabled={loading}>
           {loading ? <DotsWord text={"Joining In"} /> : "Sign In"}
         </SubmitBtn>
+        <OrText>Or Continue With</OrText>
+        <OAuthForm />
       </AuthForm>
     </AuthContainer>
   );
