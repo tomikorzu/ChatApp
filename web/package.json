@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx index.ts",
-    "build": "tsc",
+    "build": "npm install && next build && tsc",
     "start": "node dist/index.js",
     "lint": "next lint"
   },

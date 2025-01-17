@@ -1,10 +1,8 @@
 "use client";
 
-import { useSocket } from "@/shared/hooks/useSocket";
 import Link from "next/link";
 
 export default function UserInfo() {
-  const socket = useSocket();
   const data = {
     image: "/images/me.jpeg",
     name: "amor",

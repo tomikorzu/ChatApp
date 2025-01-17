@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useState } from "react";
 import AuthContainer from "../components/AuthContainer";
 import AuthForm from "../components/AuthForm";
@@ -12,7 +13,7 @@ import DotsWord from "@/shared/ui/DotsWord";
 import Redirect from "../components/Redirect";
 import PasswordInput from "../components/PasswordInput";
 
-export default function ResetPasswordPage() {
+function ResetPasswordPageClient() {
   const [newPassword, setNewPassword] = useState<string>("");
   const [errors, setErrors] = useState<{ msg: string; location: string }[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -64,5 +65,13 @@ export default function ResetPasswordPage() {
         </SubmitBtn>
       </AuthForm>
     </AuthContainer>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResetPasswordPageClient />
+    </Suspense>
   );
 }

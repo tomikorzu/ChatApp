@@ -1,5 +1,5 @@
 import { NextResponse as res } from "next/server";
-import { checkCode, emailVerified } from "./services/route";
+import { checkCode, emailVerified } from "./services";
 import { createToken } from "@/server/jwt/tokens";
 
 export interface User {

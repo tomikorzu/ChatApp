@@ -1,6 +1,5 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function Redirect({
   url,
@@ -9,7 +8,6 @@ export default function Redirect({
   url: string;
   children: React.ReactNode;
 }) {
-  const router = useRouter();
   return (
     <>
       <Link
