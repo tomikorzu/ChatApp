@@ -1,7 +1,7 @@
 "use client";
 
-import { useSocket } from "@/shared/hooks/useSocket";
 import { useEffect, useState } from "react";
+import { useSocket } from "@/shared/hooks/useSocket";
 
 export default function Messages() {
   const [messages, setMessages] = useState<string[]>([]);
@@ -11,6 +11,7 @@ export default function Messages() {
     if (!socket) return;
 
     socket.on("message", (message: string) => {
+      console.log("Message received:", message, socket.id);
       setMessages((prev) => [...prev, message]);
     });
 
