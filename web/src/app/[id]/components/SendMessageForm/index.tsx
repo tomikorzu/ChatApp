@@ -1,14 +1,14 @@
 "use client";
 
+import { useSocket } from "@/shared/providers/SocketProvider";
 import { ArrowUp } from "lucide-react";
 import { useState } from "react";
-import { useSocket } from "@/shared/hooks/useSocket";
 
 export default function SendMessageForm() {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
 
-  const socket = useSocket()
+  const socket = useSocket();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

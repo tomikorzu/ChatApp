@@ -1,7 +1,7 @@
 "use client";
 
+import { useSocket } from "@/shared/providers/SocketProvider";
 import { useEffect, useState } from "react";
-import { useSocket } from "@/shared/hooks/useSocket";
 
 export default function Messages() {
   const [messages, setMessages] = useState<string[]>([]);
