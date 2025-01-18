@@ -15,8 +15,7 @@ const io = new SocketServer(httpServer, {
 
 app.get("/", (req, res) => {
   res.json({
-    message: "Welcome to the chat server, the web url is:",
-    url: process.env.WEB_URL,
+    message: "Welcome to the chat socket server, the web url is:",
   });
 });
 
