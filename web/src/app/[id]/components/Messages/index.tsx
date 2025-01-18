@@ -7,6 +7,8 @@ export default function Messages() {
   const [messages, setMessages] = useState<string[]>([]);
   const socket = useSocket();
 
+  console.log(process.env.SOCKET_URL);
+
   useEffect(() => {
     if (!socket) return;
 

@@ -13,6 +13,13 @@ const io = new SocketServer(httpServer, {
   },
 });
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "Welcome to the chat server, the web url is:",
+    url: process.env.WEB_URL,
+  });
+});
+
 io.on("connection", (socket) => {
   console.log("Client connected", socket.id);
   socket.data = { username: "amor" };
