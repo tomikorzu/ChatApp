@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SocketProvider } from "@/shared/providers/SocketProvider";
+import { SessionProvider } from "@/shared/providers/SessionProvider";
 
 export const metadata: Metadata = {
   title: "Chat App",
@@ -22,7 +23,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <SocketProvider>{children}</SocketProvider>
+        <SessionProvider>
+          <SocketProvider>{children}</SocketProvider>
+        </SessionProvider>
       </body>
     </html>
   );

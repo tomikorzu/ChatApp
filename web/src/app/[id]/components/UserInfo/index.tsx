@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "@/shared/providers/SessionProvider";
 import Link from "next/link";
 
 export default function UserInfo() {
@@ -10,6 +11,8 @@ export default function UserInfo() {
   };
 
   const id = 1;
+
+  const session = useSession();
 
   return (
     <Link
@@ -23,7 +26,7 @@ export default function UserInfo() {
       />
       <div className="flex flex-col">
         <h3 className="font-bold max-w-[170px] text-sm whitespace-nowrap text-ellipsis overflow-hidden">
-          {}
+          {session?.user?.username}
         </h3>
         <span className="text-[10px]">{data.state}</span>
       </div>
