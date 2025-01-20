@@ -39,14 +39,14 @@ db.run(`CREATE TABLE IF NOT EXISTS rooms (
 `);
 
 db.run(`CREATE TABLE IF NOT EXISTS friends (
-            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-            user_id INTEGER NOT NULL,
-            friend_id INTEGER NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            UNIQUE(user_id, friend_id),
-            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-            FOREIGN KEY (friend_id) REFERENCES users(id) ON DELETE CASCADE
-        )`);
+  id INTEGER PRIMARY KEY AUTOINCREMENT, 
+  user1_id INTEGER NOT NULL,
+  user2_id INTEGER NOT NULL,
+  status TEXT NOT NULL CHECK (status IN ('pending', 'accepted', 'blocked')),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user1_id) REFERENCES users (id) ON DELETE CASCADE,
+  FOREIGN KEY (user2_id) REFERENCES users (id) ON DELETE CASCADE
+);`);
 
 db.run(`CREATE TABLE IF NOT EXISTS friend_requests (
             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,

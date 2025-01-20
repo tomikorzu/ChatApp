@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
+    "dev:socket": "NODE_OPTIONS='--loader ts-node/esm --trace-warnings --no-warnings' ts-node server.mts",
     "build": "next build",
+    "build:socket": "next build && tsc --project tsconfig.server.json",
     "start": "next start",
+    "start:socket": "NODE_ENV=production node dist/server.mjs",
     "lint": "next lint"
   },
   "dependencies": {
@@ -27,6 +30,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/bcrypt": "^5.0.2",
+    "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.17",
