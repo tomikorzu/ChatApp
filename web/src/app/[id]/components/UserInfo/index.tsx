@@ -1,14 +1,33 @@
 "use client";
 
 import { useSession } from "@/shared/providers/SessionProvider";
+import { useSocket } from "@/shared/providers/SocketProvider";
+import DotsWord from "@/shared/ui/DotsWord";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function UserInfo() {
+  const [isTyping, setIsTyping] = useState<boolean>(false);
+  const [userTyping, setUserTyping] = useState<string>("");
   const data = {
     image: "/images/me.jpeg",
     name: "amor",
     state: "Online",
   };
+
+  const socket = useSocket();
+
+  useEffect(() => {
+    socket?.on("typing", (isTyping: boolean, username: string) => {
+      if (isTyping === true) {
+        setIsTyping(true);
+        setUserTyping(username);
+      } else {
+        setIsTyping(false);
+        setUserTyping("");
+      }
+    });
+  }, [socket]);
 
   const id = 1;
 
@@ -28,7 +47,11 @@ export default function UserInfo() {
         <h3 className="font-bold max-w-[170px] text-sm whitespace-nowrap text-ellipsis overflow-hidden">
           {session?.user?.username}
         </h3>
-        <span className="text-[10px]">{data.state}</span>
+        {!isTyping ? (
+          <span className="text-[10px]">{data.state}</span>
+        ) : (
+          <DotsWord text={`${userTyping} is typing`} />
+        )}
       </div>
     </Link>
   );

@@ -15,7 +15,7 @@ const io = new SocketServer(httpServer, {
 
 app.get("/", (req, res) => {
   res.json({
-    message: "Welcome to the chat socket server, the web url is:",
+    message: "Welcome to the chat socket server",
   });
 });
 
@@ -27,9 +27,13 @@ io.on("connection", (socket) => {
     console.log("Client disconnected", socket.id);
   });
 
-  socket.on("message", (data) => {
-    console.log(data);
-    socket.broadcast.emit("message", data);
+  socket.on("message", (content, user) => {
+    socket.broadcast.emit("message", content, user.username);
+  });
+
+  socket.on("typing", (isTyping, username) => {
+    if (isTyping === true) socket.broadcast.emit("typing", isTyping, username);
+    else socket.broadcast.emit("typing", false, "");
   });
 });
 

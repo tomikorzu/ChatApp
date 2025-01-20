@@ -1,14 +1,25 @@
 "use client";
 
+import { useSession } from "@/shared/providers/SessionProvider";
 import { useSocket } from "@/shared/providers/SocketProvider";
 import { ArrowUp } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SendMessageForm() {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
 
+  const session = useSession();
+
   const socket = useSocket();
+
+  useEffect(() => {
+    if (isTyping === true) {
+      socket?.emit("typing", true, session?.user.username);
+    } else {
+      socket?.emit("typing", false, "");
+    }
+  }, [isTyping]);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -18,7 +29,10 @@ export default function SendMessageForm() {
 
     if (!socket) return;
 
-    socket.emit("message", inputValue);
+    socket.emit("message", inputValue, {
+      userId: session?.user.id,
+      username: session?.user.username,
+    });
     setInputValue("");
   }
 

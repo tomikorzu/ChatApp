@@ -3,14 +3,16 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 
-interface User {
-  id: number;
-  email: string;
-  username: string;
-  created_at: string;
+export interface User {
+  user: {
+    id: number;
+    email: string;
+    username: string;
+    created_at: string;
+  };
 }
 
-const SessionContext = createContext<User | null>(null);
+export const SessionContext = createContext<User | null>(null);
 
 export function SessionProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
