@@ -1,9 +1,11 @@
 import { NextResponse as res } from "next/server";
 import { getFriends } from "./service";
-import { getUserById } from "../../users/[id]/service";
+import { getUserById } from "@/server/services/users/get";
+
+const url = `${process.env.URL || "http://localhost:3000"}/api/friends/`;
 
 export async function GET(req: Request) {
-  const id = req.url.split("http://localhost:3000/api/friends/")[1];
+  const id = req.url.split(url)[1];
   try {
     const usersId = await getFriends(id);
 
@@ -15,7 +17,7 @@ export async function GET(req: Request) {
     });
 
     const friends = await Promise.all(
-      friendsArray.map((friendId) => getUserById(parseInt(friendId)))
+      friendsArray.map((friendId) => getUserById(friendId as string))
     );
 
     return res.json({ friends }, { status: 200 });
