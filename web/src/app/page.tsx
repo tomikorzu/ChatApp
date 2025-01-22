@@ -2,6 +2,7 @@
 
 import { deleteCookie } from "@/shared/lib/cookies";
 import { useSession } from "@/shared/providers/SessionProvider";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -26,7 +27,7 @@ export default function DashboardPage() {
     } else setFriends([]);
   }
   useEffect(() => {
-    getFriends(session?.user.id);
+    Promise.all([getFriends(session?.user.id)]);
   }, [session?.user.id]);
 
   const router = useRouter();
@@ -36,30 +37,41 @@ export default function DashboardPage() {
   }
   return (
     <>
-      <h1>Dashbiard</h1>
-      <button
+      {/* <button
         onClick={handleLogout}
         className="p-2 rounded-md bg-[#e21f1f] transition duration-[.4s] hover:brightness-110"
       >
         Log Out
-      </button>
-      <ul>
-        {friends ? (
-          friends.map((friend: Friends) => {
-            return (
-              <li key={friend.id}>
-                {friend.profile_picture && (
-                  <img src={friend.profile_picture} alt={friend.username} />
-                )}
-                <h2>{friend.username}</h2>
-                <p>{friend.bio}</p>
-              </li>
-            );
-          })
+      </button> */}
+      <section className="flex flex-col max-w-xs min-h-screen bg-[#2f2f2f]">
+        <h1 className="font-bold text-xl sm:text-2xl mt-5 mb-3 ml-3">
+          Dashboard
+        </h1>
+        {friends.length > 0 ? (
+          <ul className="flex flex-col w-full">
+            {friends.map((friend: Friends) => {
+              return (
+                <li key={friend.id}>
+                  <Link
+                    href={`${friend.id}`}
+                    className="w-full bg-[#2f2f2f] flex items-center py-2 pl-3 gap-2 cursor-pointer hover:brightness-[115%] transition duration-[.4s]"
+                  >
+                    <img
+                      src={friend.profile_picture || "/images/me.jpeg"}
+                      alt={friend.username}
+                      className="size-12 object-cover rounded-full"
+                    />
+                    <h2>{friend.username}</h2>
+                    <p>{friend.bio}</p>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         ) : (
           <p>No friends found</p>
         )}
-      </ul>
+      </section>
     </>
   );
 }
