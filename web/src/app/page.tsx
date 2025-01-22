@@ -37,12 +37,12 @@ export default function DashboardPage() {
   }
   return (
     <>
-      {/* <button
+      <button
         onClick={handleLogout}
-        className="p-2 rounded-md bg-[#e21f1f] transition duration-[.4s] hover:brightness-110"
+        className="p-2 rounded-md bg-[#e21f1f] transition duration-[.4s] hover:brightness-110 fixed top-2 right-2"
       >
         Log Out
-      </button> */}
+      </button>
       <section className="flex flex-col max-w-xs min-h-screen bg-[#2f2f2f]">
         <h1 className="font-bold text-xl sm:text-2xl mt-5 mb-3 ml-3">
           Dashboard
