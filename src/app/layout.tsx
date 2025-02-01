@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
 import "./globals.css";
-import { SocketProvider } from "@/shared/providers/SocketProvider";
+
+import AsideBar from "@/shared/ui/AsideBar";
+import type { Metadata } from "next";
 import { SessionProvider } from "@/shared/providers/SessionProvider";
+import { SocketProvider } from "@/shared/providers/SocketProvider";
 
 export const metadata: Metadata = {
   title: "Chat App",
@@ -22,9 +24,12 @@ export default function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
       </head>
-      <body>
+      <body className="flex">
         <SessionProvider>
-          <SocketProvider>{children}</SocketProvider>
+          <SocketProvider>
+            <AsideBar />
+            {children}
+          </SocketProvider>
         </SessionProvider>
       </body>
     </html>
