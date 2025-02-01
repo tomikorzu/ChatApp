@@ -1,6 +1,7 @@
 import "./globals.css";
 
 import AsideBar from "@/shared/ui/AsideBar";
+import MenuBar from "@/shared/ui/MenuBar";
 import type { Metadata } from "next";
 import { SessionProvider } from "@/shared/providers/SessionProvider";
 import { SocketProvider } from "@/shared/providers/SocketProvider";
@@ -28,7 +29,10 @@ export default function RootLayout({
         <SessionProvider>
           <SocketProvider>
             <AsideBar />
-            {children}
+            <main className="flex">
+              <MenuBar />
+              {children}
+            </main>
           </SocketProvider>
         </SessionProvider>
       </body>
