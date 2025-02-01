@@ -1,10 +1,11 @@
 "use client";
 
-import { deleteCookie } from "@/shared/lib/cookies";
-import { useSession } from "@/shared/providers/SessionProvider";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
+import Link from "next/link";
+import { deleteCookie } from "@/shared/lib/cookies";
+import { useRouter } from "next/navigation";
+import { useSession } from "@/shared/providers/SessionProvider";
 
 interface Friends {
   id: number;
@@ -37,13 +38,8 @@ export default function DashboardPage() {
   }
   return (
     <>
-      <button
-        onClick={handleLogout}
-        className="p-2 rounded-md bg-[#e21f1f] transition duration-[.4s] hover:brightness-110 fixed top-2 right-2"
-      >
-        Log Out
-      </button>
-      <section className="flex flex-col max-w-xs min-h-screen bg-[#2f2f2f]">
+      <div className="flex">
+      <header className="relative flex flex-col lg:w-[320px] sm:w-1/3 w-full h-screen bg-[#2f2f2f]">
         <h1 className="font-bold text-xl sm:text-2xl mt-5 mb-3 ml-3">
           Dashboard
         </h1>
@@ -71,7 +67,17 @@ export default function DashboardPage() {
         ) : (
           <p>No friends found</p>
         )}
-      </section>
+        <button
+        onClick={handleLogout}
+        className="py-2 left-4 right-4 rounded-md bg-[#e21f1f] transition duration-[.4s] hover:brightness-110 absolute bottom-4"
+      >
+        Log Out
+      </button>
+      </header>
+      <main className="hidden md:flex">
+        <h2>Choose one room to chat!</h2>
+      </main>
+      </div>
     </>
   );
 }
