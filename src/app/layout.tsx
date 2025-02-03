@@ -29,7 +29,7 @@ export default function RootLayout({
         <SessionProvider>
           <SocketProvider>
             <AsideBar />
-            <main className="flex">
+            <main className="flex w-full">
               <MenuBar />
               {children}
             </main>
