@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse as res } from "next/server";
-import checkMiddleware from "./middlewares/auth/check";
+
 import authMiddleware from "./middlewares/auth";
+import checkMiddleware from "./middlewares/auth/check";
 
 export function middleware(req: NextRequest) {
   const checkResponse = checkMiddleware(req);
@@ -12,5 +13,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/:path", "/auth/:path"],
+  matcher: ["/", "/:path", "/auth/:path", "/dm/:path"],
 };
