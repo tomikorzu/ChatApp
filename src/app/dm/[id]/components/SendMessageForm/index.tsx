@@ -1,9 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
+import { ArrowUp } from "lucide-react";
 import { useSession } from "@/shared/providers/SessionProvider";
 import { useSocket } from "@/shared/providers/SocketProvider";
-import { ArrowUp } from "lucide-react";
-import { useEffect, useState } from "react";
 
 export default function SendMessageForm() {
   const [isTyping, setIsTyping] = useState<boolean>(false);
@@ -39,7 +40,7 @@ export default function SendMessageForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="fixed bottom-4 w-[90%] p-2 rounded-full flex justify-between items-center gap-2 bg-[#2f2f2f]"
+      className="absolute bottom-4 left-2 right-2 p-2 rounded-full flex justify-between items-center gap-2 bg-[#2f2f2f]"
     >
       <input
         type="text"
